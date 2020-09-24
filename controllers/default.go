@@ -49,22 +49,42 @@ func (c *MainController) post()  {
 /*
 	该方法用于处理post类型的请求
  */
-func (c *MainController) Post() {
+//func (c *MainController) Post() {
+//	//1,解析前端提交的json格式数据
+//	var person models.Person
+//	dataBytes,err :=ioutil.ReadAll(c.Ctx.Request.Body)
+//	if err != nil {
+//		c.Ctx.WriteString("数据接收错误,请重试")
+//		return
+//	}
+//	err = json.Unmarshal(dataBytes,&person)
+//	if err != nil {
+//		c.Ctx.WriteString("数据解析失败，请重试")
+//		return
+//	}
+//	fmt.Println("姓名：",person.Name)
+//	fmt.Println("年龄：",person.Age)
+//	fmt.Println("性别：",person.Sex)
+//	c.Ctx.WriteString("数据请求成功")
+//}
+
+func (c *MainController) Post (){
 	//1,解析前端提交的json格式数据
-	var person models.Person
+	var register models.Register
 	dataBytes,err :=ioutil.ReadAll(c.Ctx.Request.Body)
 	if err != nil {
 		c.Ctx.WriteString("数据接收错误,请重试")
-		return
-	}
-	err = json.Unmarshal(dataBytes,&person)
-	if err != nil {
-		c.Ctx.WriteString("数据解析失败，请重试")
-		return
-	}
-	fmt.Println("姓名：",person.Name)
-	fmt.Println("年龄：",person.Age)
-	fmt.Println("性别：",person.Sex)
-	c.Ctx.WriteString("数据请求成功")
+			return
+		}
+		err = json.Unmarshal(dataBytes,&register)
+			if err != nil {
+				c.Ctx.WriteString("数据解析失败，请重试")
+				return
+			}
+			fmt.Println("姓名：",register.Name)
+	fmt.Println("生日：",register.Birthday)
+		fmt.Println("地址：",register.Address)
+		fmt.Println("昵称：",register.Nick)
+		c.Ctx.WriteString("数据请求成功")
 }
 
